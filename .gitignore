@@ -19,3 +19,6 @@ docs/dossier_assets/
 
 # Logs de sessão do Deep Copilot (escritos dentro do workspace)
 .deep-copilot/
+
+# Dossiês de memória persistente — ficam só na VPS (+ Drive), NUNCA no GitHub
+dossies/

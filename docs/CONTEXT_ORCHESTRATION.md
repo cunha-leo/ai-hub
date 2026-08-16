@@ -87,6 +87,8 @@ Não fazer downgrade silencioso: se a sessão indicar versão maior que a do rep
 | Segredos | nunca versionar; ficam na VPS (`/root/.secrets`, `/root/authelia/config`) e em SecretStorage/cofre local |
 
 > **Ambiente de trabalho:** o código do ai-hub vive e é editado na **VPS** (`/root/ai-hub`, via Remote-SSH `upexflow-vps`). A janela local do VS Code é usada para **orquestração/gestão** (esta documentação, VPS, GitHub). O handoff da sessão está em `docs/handoff/HANDOFF_2026-08-16.md`.
+>
+> **Memória persistente (dossiês):** a pasta `dossies/` (na VPS, **gitignorada** — não vai ao GitHub) guarda os dossiês DOCX/MD retroalimentados, com versão atual na raiz e antigas em `old/`. A convenção de estrutura/versão/atualização está em **`docs/DOSSIERS.md`** (versionado) e o espelho fica no Google Drive (`...\UpexFlow\ai-hub`).
 
 ---
 
