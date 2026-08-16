@@ -30,5 +30,10 @@ Este arquivo é a porta de entrada operacional para qualquer IA, agente ou sess�
 ## Vocabulário do utilizador
 
 - "Ambiente" = o navegador interno do agente (Codex/Claude em Chrome) com os acessos de trabalho.
+- **"Abra o ambiente"** (ou "ambiente 1") = abrir/reutilizar uma aba para cada destino principal:
+  - EasyPanel/VPS: `https://vps.upexflow.com/`
+  - DeepSeek Harness (app): `https://deepseek.upexflow.com/`
+  - Hostinger e-mail (caixa `contact@upexflow.com`): `https://hpanel.hostinger.com/email/upexflow.com/`
+  - DeepSeek Platform (usage/telemetria): `https://platform.deepseek.com/usage`
 - "Harness" / "dsh" = o DeepSeek Harness rodando na VPS (`https://deepseek.upexflow.com`).
 - "authai" = a tela de login única (`https://authai.upexflow.com`).
