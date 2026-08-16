@@ -1,0 +1,8 @@
+# Exemplo sanitizado — gere o hash real com:
+#   docker run --rm authelia/authelia:latest authelia crypto hash generate argon2 --random
+# A config REAL fica em /root/authelia/config/users.yml (fora do Git).
+users:
+  leonardo@upexflow.com:
+    displayname: Leonardo
+    password: HASH_ARGON2ID_AQUI
+    email: contact@upexflow.com

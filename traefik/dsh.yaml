@@ -1,0 +1,51 @@
+http:
+  middlewares:
+    authelia-forward:
+      forwardAuth:
+        address: http://ai-hub-authelia:9091/api/authz/forward-auth
+        trustForwardHeader: true
+        authResponseHeaders:
+          - Remote-User
+          - Remote-Name
+          - Remote-Email
+          - Remote-Groups
+  routers:
+    http-auth-portal:
+      entryPoints:
+        - http
+      rule: 'Host(`authai.upexflow.com`)'
+      middlewares:
+        - redirect-to-https
+      service: authelia
+    https-auth-portal:
+      entryPoints:
+        - https
+      rule: 'Host(`authai.upexflow.com`)'
+      tls:
+        certResolver: letsencrypt
+      service: authelia
+    http-dsh:
+      entryPoints:
+        - http
+      rule: 'Host(`deepseek.upexflow.com`)'
+      middlewares:
+        - redirect-to-https
+      service: dsh
+    https-dsh:
+      entryPoints:
+        - https
+      rule: 'Host(`deepseek.upexflow.com`)'
+      middlewares:
+        - authelia-forward
+      tls:
+        certResolver: letsencrypt
+      service: dsh
+  services:
+    authelia:
+      loadBalancer:
+        servers:
+          - url: http://ai-hub-authelia:9091
+    dsh:
+      loadBalancer:
+        servers:
+          - url: http://ai-hub-dsh:3080

@@ -1,0 +1,50 @@
+# Exemplo sanitizado — substitua os placeholders antes de usar.
+# A config REAL fica em /root/authelia/config/configuration.yml (fora do Git).
+theme: dark
+identity_validation:
+  reset_password:
+    jwt_secret: JWT_SECRET_AQUI            # openssl rand -hex 32
+server:
+  address: tcp://0.0.0.0:9091
+log:
+  level: info
+totp:
+  issuer: upexflow.com
+  period: 30
+  skew: 2                                   # tolerância ±60s (relógio celular/VPS)
+authentication_backend:
+  file:
+    path: /config/users.yml
+    password:
+      algorithm: argon2id
+access_control:
+  default_policy: deny
+  rules:
+    - domain: authai.upexflow.com
+      policy: bypass
+    - domain: deepseek.upexflow.com
+      policy: two_factor
+session:
+  secret: SESSION_SECRET_AQUI              # openssl rand -hex 32
+  name: authelia_session
+  expiration: 1h
+  inactivity: 30m
+  remember_me: 1M
+  cookies:
+    - domain: upexflow.com
+      authelia_url: https://authai.upexflow.com
+      default_redirection_url: https://deepseek.upexflow.com
+storage:
+  encryption_key: ENCRYPTION_KEY_AQUI      # openssl rand -hex 32
+  local:
+    path: /config/db.sqlite3
+notifier:
+  disable_startup_check: true               # não derruba o Authelia se SMTP falhar
+  smtp:
+    address: 'submissions://smtp.hostinger.com:465'   # 465 = TLS implícito (submissions)
+    timeout: '10s'
+    username: 'contact@upexflow.com'
+    password: 'SMTP_PASSWORD_AQUI'
+    sender: 'contact@upexflow.com'
+    identifier: 'authai.upexflow.com'
+    subject: '[Authelia] {title}'

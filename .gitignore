@@ -1,0 +1,14 @@
+# Segredos e dados locais — NUNCA versionar
+.secrets/
+*.env
+.env
+*.local
+
+# Authelia: dados e configs reais (as reais contêm segredos)
+authelia/db.sqlite3
+authelia/notifications.txt
+authelia/configuration.yml
+authelia/users.yml
+
+# Traefik: main.yaml é gerido pelo EasyPanel
+traefik/main.yaml
