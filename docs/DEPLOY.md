@@ -19,6 +19,8 @@ Colar o conteúdo de [`../dsh/Dockerfile`](../dsh/Dockerfile).
 - Porta exposta: `3080`.
 - A chave de API do modelo vai por **env var `DEEPSEEK_API_KEY`** (o erro `MISSING_CREDENTIAL`
   indica que a página Models não gravou a credencial; a env var resolve sem depender da UI).
+- **Volume persistente obrigatório:** montar `/root/dsh-data` → `/root/.dsh` (bind mount no EasyPanel,
+  aba Storage). Sem isso, workspaces e sessões ficam na camada efêmera e se perdem/quebram a cada deploy.
 
 ## 2. Serviço `authelia`
 
