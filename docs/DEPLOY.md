@@ -13,9 +13,12 @@ Guia de referência da montagem feita na VPS Hostinger (EasyPanel + Docker Swarm
 No EasyPanel, criar serviço com **source "Dockerfile"** (o EasyPanel não puxa imagem local).
 Colar o conteúdo de [`../dsh/Dockerfile`](../dsh/Dockerfile).
 
-- O dsh **bloqueia `--host 0.0.0.0`** (segurança). O Dockerfile usa um proxy TCP
-  interno: dsh em `127.0.0.1:3081` → forwarder Node em `0.0.0.0:3080`.
+- O dsh **bloqueia `--host 0.0.0.0`** (segurança) e protege `/api` com um **Host fence** que só aceita loopback.
+- Solução: **proxy HTTP interno** — dsh em `127.0.0.1:3081` + proxy Node em `0.0.0.0:3080` que
+  reescreve `Host -> localhost` e remove `Origin`, fazendo o dsh enxergar loopback.
 - Porta exposta: `3080`.
+- A chave de API do modelo vai por **env var `DEEPSEEK_API_KEY`** (o erro `MISSING_CREDENTIAL`
+  indica que a página Models não gravou a credencial; a env var resolve sem depender da UI).
 
 ## 2. Serviço `authelia`
 
