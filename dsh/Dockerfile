@@ -1,14 +1,15 @@
 FROM node:22
 RUN npm install -g @deepseek-ai/dsh
 
-# O dsh bloqueia `--host 0.0.0.0` (só aceita 127.0.0.1) por segurança contra RCE.
-# Solução: proxy TCP interno — o dsh escuta em 127.0.0.1:3081 e um forwarder
-# Node repassa para 0.0.0.0:3080 (a porta exposta ao EasyPanel/Traefik).
+# O dsh bloqueia `--host 0.0.0.0` e protege `/api` com um "Host fence" que só
+# aceita loopback. Como o app é exposto via reverse proxy com Host público
+# (deepseek.upexflow.com), usamos um proxy HTTP interno que reescreve
+# Host -> localhost e remove Origin, fazendo o dsh enxergar loopback.
 RUN cat > /entry.sh <<'EOF'
 #!/bin/sh
 set -e
 dsh web --host 127.0.0.1 --port 3081 &
-node -e 'const n=require("net"); n.createServer(s=>{const c=n.connect(3081,"127.0.0.1"); s.pipe(c); c.pipe(s);}).listen(3080,"0.0.0.0");'
+node -e 'const http=require("http");http.createServer((req,res)=>{const h=Object.assign({},req.headers,{host:"localhost"});delete h.origin;const p=http.request({hostname:"127.0.0.1",port:3081,path:req.url,method:req.method,headers:h},pr=>{res.writeHead(pr.statusCode,pr.headers);pr.pipe(res);});p.on("error",()=>{res.writeHead(502);res.end();});req.pipe(p);}).listen(3080,"0.0.0.0");'
 EOF
 RUN chmod +x /entry.sh
 EXPOSE 3080
