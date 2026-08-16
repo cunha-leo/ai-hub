@@ -22,3 +22,6 @@ docs/dossier_assets/
 
 # Dossiês de memória persistente — ficam só na VPS (+ Drive), NUNCA no GitHub
 dossies/
+
+# Config de SFTP (contém caminho da chave privada) — não versionar
+.vscode/
