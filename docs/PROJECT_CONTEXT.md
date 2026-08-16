@@ -25,6 +25,8 @@
 - **Telemetria registrada** (doc MD, seção 12): 30 dias ≈ **US$ 4,82 · 944 requisições · 229,4M tokens** (~US$ 0,02/M efetivo).
 - **Dossiê DOCX v1.1** + **doc MD v1.2** no Drive (pasta `DeepSeekHarness`).
 - **Validação end-to-end do dsh OK** (16/08): mensagem respondida, sessão vinculada ao workspace, sem "Ungrouped".
+- **Ambiente remoto (Remote-SSH) montado** (16/08): host `upexflow-vps` no `~/.ssh/config`, extensões instaladas na VPS (Python/Pylance/YAML/Prettier/Copilot/DeepSeek), chaves DeepSeek das extensões configuradas e testadas, `upexflow-ai-hub` clonado em `/root/ai-hub`.
+- **Credencial GitHub na VPS** ✅ (chave `id_ed25519` já existia e autentica como `cunha-leo`); identidade git configurada (`Leonardo Cunha <contact@upexflow.com>`).
 
 ---
 
@@ -33,6 +35,7 @@
 - **VPS = execução/casa** (100% para ai-hub e futuros projetos web: código, deps, agentes). **Local = cofre de mídia** (vídeo/transcript do upexnote).
 - **upexnote permanece local-first (desktop)**; versão web **adiada** (não compensa agora).
 - **GitHub = ponte** entre local e VPS (push/pull); sempre `pull` antes de editar, `push` ao terminar.
+- **Ambiente de trabalho:** o código do ai-hub é trabalhado **via SSH/Remote-SSH na VPS** (`upexflow-vps` → `/root/ai-hub`) — o editor local vira janela de orquestração/gestão; o upexnote continua 100% local.
 - **Chaves de API por canal** para telemetria consistente.
 - **Código no disco local + GitHub**; **documentação no Google Drive** (evita arquivos ocultos da nuvem no repositório).
 - **Reuso de plataforma:** Authelia vira SSO único do ecossistema; LiteLLM (futuro) vira gateway único de modelos.
@@ -41,7 +44,7 @@
 ---
 
 ## 3. Pendências imediatas
-
+~~**Credencial do GitHub na VPS**~~ → ✅ **feita** (chave SSH `id_ed25519` já existia; repo clonado em `/root/ai-hub`)
 1. **Credencial do GitHub na VPS** (fine-grained token) para o Harness fazer `clone/pull/push` nos repos privados.
 2. **(Opcional)** `LiteLLM` na VPS como gateway multi-provedor (OpenAI/Claude/Gemini) — 1 endpoint, chaves centralizadas.
 3. **(Opcional)** Tema customizado do Authelia (logo UpexFlow + CSS).
@@ -60,3 +63,4 @@
   - Dossiê DOCX v1.1 (com imagens) e doc MD v1.2 (seção 12 de telemetria) no Drive.
   - Decisões de arquitetura: VPS=execução, upexnote local-first, ai-hub 100% VPS, GitHub=ponte.
   - Estrutura de orquestração documental criada (este `docs/`).
+  - **Ambiente remoto montado:** `~/.ssh/config` com host `upexflow-vps`; Remote-SSH instalado no VS Code; extensões + chaves DeepSeek configuradas no servidor da VPS; repo `ai-hub` clonado em `/root/ai-hub` (git conectado e identidade configurada); handoff da sessão em `docs/handoff/HANDOFF_2026-08-16.md`.

@@ -80,10 +80,13 @@ Não fazer downgrade silencioso: se a sessão indicar versão maior que a do rep
 | Item | Valor |
 |---|---|
 | Raiz local de desenvolvimento | `C:\Users\cunha\Projects\upexflow\ai-hub` (disco local, fora da nuvem) |
+| **Ambiente remoto de trabalho** | `upexflow-vps` (SSH/Remote-SSH) → **`/root/ai-hub`** — o código é trabalhado aqui (janela local = orquestração) |
 | GitHub | `cunha-leo/upexflow-ai-hub` (privado, branch `main`) — **fonte de verdade e sincronização** |
 | Documentação de referência | Google Drive `...\UpexFlow\ai-hub\DeepSeekHarness` (dossiê DOCX + doc MD) |
 | VPS | Hostinger KVM, EasyPanel, projeto `ai-hub` (serviços `dsh` e `authelia`) |
 | Segredos | nunca versionar; ficam na VPS (`/root/.secrets`, `/root/authelia/config`) e em SecretStorage/cofre local |
+
+> **Ambiente de trabalho:** o código do ai-hub vive e é editado na **VPS** (`/root/ai-hub`, via Remote-SSH `upexflow-vps`). A janela local do VS Code é usada para **orquestração/gestão** (esta documentação, VPS, GitHub). O handoff da sessão está em `docs/handoff/HANDOFF_2026-08-16.md`.
 
 ---
 

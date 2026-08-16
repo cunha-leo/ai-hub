@@ -15,7 +15,9 @@
 | Telemetria / custo | ✅ **feito** | registrada no doc MD (seção 12) |
 | Dossiê DOCX + doc MD | ✅ **feito** | v1.1 / v1.2 no Google Drive |
 | Orquestração documental (`docs/`) | ✅ **feito** | este `CONTEXT_ORCHESTRATION.md` + `PROJECT_CONTEXT.md` |
-| Credencial do GitHub na VPS | ⏳ **pendente** | Harness poder clonar/pull/push nos repos |
+| Credencial do GitHub na VPS | ✅ **feito** | chave SSH `id_ed25519` já existia (autentica como `cunha-leo`) |
+| Clone do repo na VPS | ✅ **feito** | `/root/ai-hub`, identidade git configurada, pull/push OK |
+| Ambiente remoto (Remote-SSH) | ✅ **feito** | host `upexflow-vps`; extensões + chaves DeepSeek ativas na VPS |
 | LiteLLM (gateway multi-provedor) | ⬜ **futuro** | OpenAI/Claude/Gemini por 1 endpoint |
 | Tema customizado do Authelia | ⬜ **futuro** | logo UpexFlow + CSS |
 | Multi-provedor no Harness | ⬜ **futuro** | visão via modelo com visão |
@@ -25,16 +27,17 @@
 ## 2. Roadmap
 
 ### Próximo (curto prazo)
-1. [ ] **Credencial do GitHub na VPS** — gerar *fine-grained token* (escopo mínimo) para o Harness agir nos repos privados.
-2. [ ] **Clone do repo no workspace do Harness** — para o agente trabalhar sobre código real (editar, testar, commit).
+1. [x] ~~**Credencial do GitHub na VPS**~~ — ✅ feita (chave SSH já existia; repo clonado).
+2. [x] ~~**Clone do repo no workspace do Harness**~~ — ✅ `/root/ai-hub` clonado e conectado.
+3. [ ] **Handoff/continuidade** — ler `docs/handoff/HANDOFF_2026-08-16.md` na janela remota para retomar o contexto.
 
 ### Médio prazo (opcional)
-3. [ ] **LiteLLM na VPS** — gateway self-hosted: 1 endpoint OpenAI-compatível, chaves dos provedores centralizadas, telemetria/custo por projeto.
-4. [ ] **Tema do Authelia** — logo e CSS da UpexFlow na tela de login (reversível, baixo risco).
+4. [ ] **LiteLLM na VPS** — gateway self-hosted: 1 endpoint OpenAI-compatível, chaves dos provedores centralizadas, telemetria/custo por projeto.
+5. [ ] **Tema do Authelia** — logo e CSS da UpexFlow na tela de login (reversível, baixo risco).
 
 ### Visão
-5. [ ] **Multi-provedor no Harness** — DeepSeek (texto) + OpenAI/Claude via LiteLLM/OpenRouter (visão/imagem) na mesma sessão/contexto.
-6. [ ] **Plataforma reutilizável** — Authelia como SSO e LiteLLM como gateway para upexnote (web, futuro) e novos projetos.
+6. [ ] **Multi-provedor no Harness** — DeepSeek (texto) + OpenAI/Claude via LiteLLM/OpenRouter (visão/imagem) na mesma sessão/contexto.
+7. [ ] **Plataforma reutilizável** — Authelia como SSO e LiteLLM como gateway para upexnote (web, futuro) e novos projetos.
 
 ---
 
