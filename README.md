@@ -6,6 +6,19 @@ Infraestrutura do **DeepSeek Harness (dsh)** na VPS Hostinger, com porta de logi
 > Repositório **privado**. As configs reais com segredos **não** estão aqui —
 > apenas versões `.example` com placeholders (ver `.gitignore`).
 
+## 📚 Documentação e orquestração
+
+**Qualquer IA, agente ou pessoa que for trabalhar neste repositório deve começar por:**
+
+```
+docs/CONTEXT_ORCHESTRATION.md   → porta única de entrada (ordem/profundidade de leitura)
+docs/PROJECT_CONTEXT.md         → contexto vivo do projeto (estado + decisões)
+docs/FEATURE_VALIDATION_AND_ROADMAP.md → frentes + roadmap
+docs/DEPLOY.md                  → guia de deploy/operação
+```
+
+> Instrução padrão: **"Leia `docs/CONTEXT_ORCHESTRATION.md` e siga integralmente suas coordenadas antes de agir."**
+
 ## Componentes
 
 | Pasta | O que é |
@@ -14,7 +27,7 @@ Infraestrutura do **DeepSeek Harness (dsh)** na VPS Hostinger, com porta de logi
 | `authelia/` | Config do portão de login (`.example`, sem segredos) |
 | `traefik/` | Rotas do Traefik (domínios + forward-auth) |
 | `scripts/` | Scripts de setup/histórico da montagem |
-| `docs/` | Guia de deploy e operação |
+| `docs/` | Orquestração + contexto + roadmap + deploy |
 
 ## Arquitetura
 

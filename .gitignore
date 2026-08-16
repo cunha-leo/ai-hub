@@ -12,3 +12,7 @@ authelia/users.yml
 
 # Traefik: main.yaml é gerido pelo EasyPanel
 traefik/main.yaml
+
+# Ambiente virtual local para gerar documentação (fora do Git)
+.venv-docx/
+docs/dossier_assets/
