@@ -16,3 +16,6 @@ traefik/main.yaml
 # Ambiente virtual local para gerar documentação (fora do Git)
 .venv-docx/
 docs/dossier_assets/
+
+# Logs de sessão do Deep Copilot (escritos dentro do workspace)
+.deep-copilot/
