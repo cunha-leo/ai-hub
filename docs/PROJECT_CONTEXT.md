@@ -28,6 +28,7 @@
 - **Validação end-to-end do dsh OK** (16/08): mensagem respondida, sessão vinculada ao workspace, sem "Ungrouped".
 - **Ambiente remoto (Remote-SSH) montado** (16/08): host `upexflow-vps` no `~/.ssh/config`, extensões instaladas na VPS (Python/Pylance/YAML/Prettier/Copilot/DeepSeek), chaves DeepSeek das extensões configuradas e testadas, `upexflow-ai-hub` clonado em `/root/ai-hub`.
 - **Credencial GitHub na VPS** ✅ (chave `id_ed25519` já existia e autentica como `cunha-leo`); identidade git configurada (`Leonardo Cunha <contact@upexflow.com>`).
+- **Multi-provedor no dsh (17/08):** análise concluída — o dsh **já suporta outros motores nativamente** (`dsh-llm-pi-ai`, catálogo pi-ai + seleção de modelo na mesma sessão); sem ajuste de código, basta configurar perfis `llm-pi-ai:` e chaves. **LiteLLM fica opcional** (lugar único p/ telemetria e controle de APIs no ecossistema).
 
 ---
 
@@ -58,6 +59,11 @@
 - **17/08/2026 — Frentes de acesso × chaves de API (clarificação):**
   - `deepseek-agent` é uma **frente** (executor interativo no terminal via chat free oficial) **sem chave de API** — a revogação foi da chave, não da frente.
   - Mapeamento confirmado das chaves por canal: `deepseek-harness` → dsh (VPS); `copilot` → Deep Copilot; `vscode-extension` → chat do editor VS Code; `upexnote` → desktop local.
+- **17/08/2026 — Análise multi-provedor no dsh (conclusão):**
+  - O dsh **já tem multi-provedor nativo** via adapter `dsh-llm-pi-ai` (catálogo pi-ai): anthropic, openai, google, deepseek, groq, mistral, xai, zai, openrouter etc. + gateways custom via `baseURL`.
+  - **Seleção de modelo na mesma sessão é feature existente** (UI de seleção + página Models; hot-reload via `$DSH_HOME/settings.yaml`).
+  - **Sem ajuste de código** — basta configurar perfis `llm-pi-ai:` + chaves (`apiKeyEnv`/credentials) e selecionar o modelo na UI.
+  - **LiteLLM vira opcional**: só vale como lugar único para telemetria e controle de APIs no ecossistema (não é requisito do Harness).
 - **16/08/2026 — Montagem completa do ai-hub:**
   - Deploy do `dsh` na VPS (EasyPanel, source Dockerfile) com proxy HTTP+WebSocket (fix do 403/Host fence e do "Ungrouped"), volume persistente e `ripgrep`.
   - Authelia com 2FA (TOTP + passkey) e reset por e-mail (SMTP Hostinger), forward Gmail.
