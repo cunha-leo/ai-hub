@@ -2,7 +2,7 @@
 
 > **Objetivo:** manter uma fonte de verdade legível por pessoas e IAs. Atualizar a cada decisão, validação, teste relevante ou mudança estrutural. **Não contém segredos** (chaves, tokens, senhas).
 
-**Última atualização:** 16 de agosto de 2026
+**Última atualização:** 17 de agosto de 2026
 **Repositório:** `https://github.com/cunha-leo/upexflow-ai-hub` (privado) — **fonte de verdade e sincronização**
 **Raiz local:** `C:\Users\cunha\Projects\upexflow\ai-hub`
 **Documentação de referência:** Google Drive `...\UpexFlow\ai-hub\DeepSeekHarness` (dossiê DOCX + doc MD)
@@ -21,7 +21,8 @@
 
 - **dsh** rodando 24/7 na VPS: proxy HTTP+WebSocket interno, volume persistente (`/root/dsh-data` → `/root/.dsh`), `ripgrep` instalado, env `DEEPSEEK_API_KEY` definida.
 - **Authelia** com 2FA (TOTP + passkey/WebAuthn) e **recuperação de senha por e-mail** (SMTP Hostinger `submissions://…:465`), com forward Gmail de fallback.
-- **Chaves por canal** (telemetria): `deepseek-harness` · `vscode-extension` · `copilot` · `upexnote` — a `deepseek-agent` foi **revogada** (terminal usa sessão do navegador, não API).
+- **Frentes de acesso DeepSeek** (cada uma é uma frente, mesmo sem chave): chat oficial (free) · `deepseek-agent` (executor interativo no terminal local) · DeepSeek Harness/dsh (VPS) · Deep Copilot · chat do editor VS Code · upexnote.
+- **Chaves de API por canal** (telemetria): `deepseek-harness` → dsh · `copilot` → Deep Copilot · `vscode-extension` → chat do editor VS Code · `upexnote` → desktop local. A `deepseek-agent` **não tem chave** (não consome API — executor no nível do chat free oficial); a revogação foi da chave, não da frente.
 - **Telemetria registrada** (doc MD, seção 12): 30 dias ≈ **US$ 4,82 · 944 requisições · 229,4M tokens** (~US$ 0,02/M efetivo).
 - **Dossiê DOCX v1.1** + **doc MD v1.2** no Drive (pasta `DeepSeekHarness`).
 - **Validação end-to-end do dsh OK** (16/08): mensagem respondida, sessão vinculada ao workspace, sem "Ungrouped".
@@ -54,6 +55,9 @@
 
 ## 4. Registro de atualizações
 
+- **17/08/2026 — Frentes de acesso × chaves de API (clarificação):**
+  - `deepseek-agent` é uma **frente** (executor interativo no terminal via chat free oficial) **sem chave de API** — a revogação foi da chave, não da frente.
+  - Mapeamento confirmado das chaves por canal: `deepseek-harness` → dsh (VPS); `copilot` → Deep Copilot; `vscode-extension` → chat do editor VS Code; `upexnote` → desktop local.
 - **16/08/2026 — Montagem completa do ai-hub:**
   - Deploy do `dsh` na VPS (EasyPanel, source Dockerfile) com proxy HTTP+WebSocket (fix do 403/Host fence e do "Ungrouped"), volume persistente e `ripgrep`.
   - Authelia com 2FA (TOTP + passkey) e reset por e-mail (SMTP Hostinger), forward Gmail.

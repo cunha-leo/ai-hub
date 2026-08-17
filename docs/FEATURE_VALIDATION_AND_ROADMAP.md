@@ -11,7 +11,7 @@
 | Deploy do dsh (VPS) | ✅ **feito/validado** | proxy HTTP+WebSocket, volume persistente, ripgrep, env key |
 | Authelia + 2FA + SMTP | ✅ **feito/validado** | TOTP + passkey, reset por e-mail, forward Gmail |
 | Traefik / rotas | ✅ **feito/validado** | `dsh.yaml`, forward-auth, `authai` + `deepseek` |
-| Chaves por canal | ✅ **feito** | 4 ativas; `deepseek-agent` revogada |
+| Chaves por canal | ✅ **feito** | 4 ativas: `deepseek-harness` (dsh) · `copilot` (Deep Copilot) · `vscode-extension` (editor) · `upexnote`; `deepseek-agent` é frente sem chave (chat free) |
 | Telemetria / custo | ✅ **feito** | registrada no doc MD (seção 12) |
 | Dossiê DOCX + doc MD | ✅ **feito** | v1.1 / v1.2 no Google Drive |
 | Orquestração documental (`docs/`) | ✅ **feito** | este `CONTEXT_ORCHESTRATION.md` + `PROJECT_CONTEXT.md` |
